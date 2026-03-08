@@ -1,5 +1,5 @@
 {
-	"name": "@codefeathers/bin",
+	"name": "@sitischu/memocho",
 	"version": "1.0.0",
 	"description": "A tiny, sensible hastebin alternative",
 	"main": "app.js",
@@ -9,7 +9,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/codefeathers/bin.git"
+		"url": "git+https://git.yaji.dev/sitischu/memocho.git"
 	},
 	"keywords": [
 		"hastebin",
@@ -17,12 +17,12 @@
 		"paste",
 		"notes"
 	],
-	"author": "Muthu Kumar <@MKRhere> (https://mkr.pw)",
+	"contributors": ["Muthu Kumar <@MKRhere> (https://mkr.pw)", "SitiSchu <@SitiSchu> (https://sitisch.com)"],
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/codefeathers/bin/issues"
+		"url": "https://git.yaji.dev/sitischu/memocho/issues"
 	},
-	"homepage": "https://github.com/codefeathers/bin#readme",
+	"homepage": "https://git.yaji.dev/sitischu/memocho#readme",
 	"dependencies": {
 		"dotenv": "^8.1.0",
 		"express": "^4.16.3",
