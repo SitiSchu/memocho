@@ -1,21 +1,20 @@
 services:
   memocho:
-    build:
-      context: .
-      args:
-        PORT: "${BIN_PORT}"
-        MONGO_CSTRING: "${BIN_MONGO_CSTRING}"
+    container_name: memocho
+    image: git.yaji.dev/sitischu/memocho
+    restart: unless-stopped
+
     depends_on:
       mongodb:
         condition: service_started
-        restart: true
-    container_name: memocho
-    restart: unless-stopped
+
     networks:
-      - proxy
+      - traefik
       - mongodb
+
     env_file:
       - .env
+
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.memocho.rule=Host(`bin.example.com`)"
@@ -35,6 +34,6 @@ services:
 networks:
   mongodb:
     name: mongodb
-  proxy:
+  traefik:
     external: true
 
