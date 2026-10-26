@@ -1,6 +1,9 @@
 const render = require('../render');
 const hl = require('highlight.js');
 
+const notFound = res => res.status(404)
+    .send('<code>Nothing here, go <a href="/">back!</a></code>');
+
 module.exports = (req, res) => {
 
     const {models, mongoose} = req;
@@ -9,15 +12,12 @@ module.exports = (req, res) => {
     // interpolated into the render selector, so it must not carry
     // selector metacharacters such as [ ] = . # or whitespace.
     const language = rawLanguage && hl.getLanguage(rawLanguage) ? rawLanguage : undefined;
+    // ObjectId() throws on malformed ids; an unparseable id cannot exist
+    if (!mongoose.Types.ObjectId.isValid(id)) return notFound(res);
     const rawMode = Boolean(req.query.raw);
     return models.snippets.findOne({_id: mongoose.Types.ObjectId(id)})
         .then(doc => {
-            if (!doc) {
-                res.status(404);
-                return res.send(
-                    '<code>Nothing here, go <a href="/">back!</a></code>'
-                );
-            }
+            if (!doc) return notFound(res);
             if (rawMode) {
                 res.writeHead(200, {"Content-Type": "text/plain; charset=utf-8"});
                 res.end(doc.content);

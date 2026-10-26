@@ -46,6 +46,15 @@ app.post('/', createSnippet);
 app.get('/~:id', getSnippet);
 app.get('/', home);
 
+// Log details server-side, but never send stack traces to clients
+app.use((err, req, res, next) => {
+    if (res.headersSent) return next(err);
+    const status = err.status || err.statusCode || 500;
+    if (status >= 500) console.error(err);
+    res.status(status).type('text/plain')
+        .send(status >= 500 ? 'Internal server error' : err.message);
+});
+
 
 const PORT = process.env.BIN_PORT || 1998;
 const HOST = process.env.BIN_HOST || '127.0.0.1'
