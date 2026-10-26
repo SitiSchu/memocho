@@ -1,6 +1,7 @@
 const express = require('express');
 const helmet = require('helmet');
 
+const {maxPasteBytes} = require('./config');
 const rawBody = require('./middleware/rawBody');
 const mongoose = require('./middleware/mongoose');
 const render = require('./middleware/render');
@@ -15,8 +16,8 @@ const fork = require('./routes/fork');
 app.use(helmet());
 app.use(express.static(__dirname + '/public'));
 app.use('/custom', express.static(__dirname + '/custom'));
-app.use(express.urlencoded({extended: true})); // parse formdata
-app.use(express.json()); // parse JSON requests
+app.use(express.urlencoded({extended: true, limit: maxPasteBytes})); // parse formdata
+app.use(express.json({limit: maxPasteBytes})); // parse JSON requests
 app.use(rawBody());
 
 app.use(mongoose());

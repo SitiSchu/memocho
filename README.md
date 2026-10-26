@@ -15,6 +15,8 @@ npm install
 Start the app with the ENV variables:
 + `BIN_MONGO_CSTRING`: your Mongo connection string.
 + `BIN_PORT`: port on which `bin` should listen to.
++ `BIN_MAX_PASTE_BYTES`: largest accepted paste in bytes (default `1048576`). Larger requests are rejected with `413`.
++ `BIN_MAX_HIGHLIGHT_BYTES`: pastes larger than this are served without syntax highlighting (default `65536`), which keeps rendering cheap.
 
 ```shell
 BIN_MONGO_CSTRING=mongodb://localhost:27017/bin-store \
