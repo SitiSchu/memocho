@@ -25,7 +25,7 @@ module.exports = (m, {isSnippet}) => {
             " ",
         ),
         m("a#name-label", {
-            href: "https://github.com/mojurasu/memocho",
+            href: "https://git.yaji.dev/sitischu/memocho",
             target: "blank",
             rel: "noopener"
         }, " Memochō"),
@@ -45,21 +45,11 @@ module.exports = (m, {isSnippet}) => {
             m(
                 "a",
                 {
-                    href: "https://git.yaji.dev/sitischu/memocho",
+                    href: "https://git.yaji.dev/sitischu/",
                     target: "blank",
                     rel: "noopener"
                 },
                 "@SitiSchu"
-            ),
-            "",
-            m(
-                "a",
-                {
-                    href: "https://github.com/mojurasu/memocho",
-                    target: "blank",
-                    rel: "noopener"
-                },
-                "Fork me!"
             ),
         ]),
     ]);
