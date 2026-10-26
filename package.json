@@ -1,6 +1,6 @@
 {
 	"name": "@sitischu/memocho",
-	"version": "1.2.0",
+	"version": "1.3.0",
 	"description": "A tiny, sensible hastebin alternative",
 	"main": "app.js",
 	"scripts": {
