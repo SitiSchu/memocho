@@ -1,12 +1,15 @@
 const highlight = require('./highlight');
 
 module.exports = (m, {location, content, language}) => {
+    // Treat the hint as data: keep only class-name characters so it can never
+    // become selector syntax (e.g. an injected [attr=value] block).
+    const languageClass = ("" + (language || "")).replace(/[^a-zA-Z0-9_+-]/g, "");
     language = language && [language];
     const isSnippet = location === 'snippet';
     const textArea =
         (isSnippet ? "code" : "textarea.binEditor")
         + "#snippet.textarea"
-        + (language ? "." + language : "");
+        + (languageClass ? "." + languageClass : "");
     const highlighted =
         isSnippet && (highlight(m, {content, language}));
 

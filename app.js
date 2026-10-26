@@ -13,7 +13,24 @@ const getSnippet = require('./routes/getSnippet');
 const createSnippet = require('./routes/createSnippet');
 const fork = require('./routes/fork');
 
-app.use(helmet());
+app.use(helmet({
+    contentSecurityPolicy: {
+        // helmet-csp 2 predates script-src-attr; loose skips its directive allowlist
+        loose: true,
+        directives: {
+            defaultSrc: ["'self'"],
+            scriptSrc: ["'self'"],
+            // Inline event handlers stay disabled even if a template slips
+            scriptSrcAttr: ["'none'"],
+            // The original-snippet textarea uses a style attribute
+            styleSrc: ["'self'", "'unsafe-inline'"],
+            objectSrc: ["'none'"],
+            baseUri: ["'self'"],
+            frameAncestors: ["'self'"],
+            formAction: ["'self'"],
+        },
+    },
+}));
 app.use(express.static(__dirname + '/public'));
 app.use('/custom', express.static(__dirname + '/custom'));
 app.use(express.urlencoded({extended: true, limit: maxPasteBytes})); // parse formdata
