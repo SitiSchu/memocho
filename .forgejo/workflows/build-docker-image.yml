@@ -10,7 +10,7 @@ jobs:
         name: Build Docker Image
         runs-on: docker
         container:
-            image: git.yaji.dev/sitischu/images/docker-build
+            image: git.yaji.dev/yaji/images/docker-build
         steps:
             -   name: Checkout repository
                 uses: actions/checkout@v5
