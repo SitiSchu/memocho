@@ -26,16 +26,19 @@ BIN_MONGO_CSTRING=mongodb://localhost:27017/bin-store \
 
 ## Running in Docker
 
-Memochō supports running inside Docker through the provided Dockerfile. To build the image:
+Memochō supports running inside Docker through the provided Dockerfile.
+Prebuilt images can be found at `git.yaji.dev/sitischu/memocho:latest`
+
+To build the image manually:
 
 ```shell
-docker build -t mojurasu/memocho:latest --build-arg PORT=4000 --build-arg MONGO_CSTRING=mongodb://localhost:27017/bin-store .
+docker build -t sitischu/memocho:latest --build-arg PORT=4000 --build-arg MONGO_CSTRING=mongodb://localhost:27017/bin-store .
 ```
 
 Then run it as you would any other image:
 
 ```shell
-docker run mojurasu/memocho:latest
+docker run sitischu/memocho:latest
 ```
 
 ### Docker Compose
