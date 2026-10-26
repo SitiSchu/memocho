@@ -45,7 +45,7 @@ module.exports = (m, {isSnippet}) => {
             m(
                 "a",
                 {
-                    href: "https://github.com/SitiSchu",
+                    href: "https://git.yaji.dev/sitischu/memocho",
                     target: "blank",
                     rel: "noopener"
                 },
